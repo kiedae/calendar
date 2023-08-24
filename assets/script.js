@@ -2,7 +2,7 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var currentTime = dayjs().format("ddd h:mm A");
-$("#current-time").text(currentTime);
+
 
 $(function callInteract() {
     
@@ -27,14 +27,40 @@ $(function callInteract() {
     //
     // TODO: Add code to display the current date in the header of the page.
   });
-
-
-
-  $(function nineAm() {
-    if (currentTime.isAfter(dayjs('10:59 AM', 'h:mm A'))) {
-        $('#hour-10').removeClass("present");
-        $('#hour-10').removeClass("future");
-    }
-
-  });
+  function updateCurrentTime() {
+    var currentTime = dayjs().format("ddd h:mm A"); // Update the current time
+    $("#current-time").text(currentTime);
   
+    // Call this function every second to update the time
+    setTimeout(updateCurrentTime, 1000);
+  }
+  
+
+  
+  $(document).ready(function() {
+    // Start updating the time
+    updateCurrentTime();
+
+  $(function classTimeAdjustment() {
+   var tenTime = dayjs('10:59 AM', 'h:mm A');
+   var currentTime = dayjs();
+  
+
+   if (currentTime.isAfter(tenTime)) {
+    $('#hour-10').removeClass("present");
+    $('#hour-10').addClass("past");
+  } else if (currentTime.isAfter("9:59 AM", 'h:mm A') && currentTime.isBefore("11:00 AM", 'h:mm A'))  {
+    $('#hour-10').addClass("present");
+    $('#hour-10').removeClass("past");
+    $('#hour-10').removeClass("future");
+  } else {
+    $('#hour-10').removeClass("present");
+    $('#hour-10').removeClass("past");
+    $('#hour-10').addClass("future");
+  }
+
+
+    classTimeAdjustment();
+  });
+  });
+ 
