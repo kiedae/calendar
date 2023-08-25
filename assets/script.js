@@ -198,15 +198,15 @@ function elevenTime() {
 
   function fiveTime() {
     var currentTime = dayjs();
-    var StartTime = dayjs('11:00 PM', 'h:mm A');
-    var EndTime = dayjs('11:59 PM', 'h:mm A');
+    var StartTime = dayjs('5:00 PM', 'h:mm A');
+    var EndTime = dayjs('6:00 PM', 'h:mm A');
 
 
     if (currentTime.isAfter(EndTime)) {
         $('#hour-5').removeClass("present");
         $('#hour-5').addClass("past");
         $('#hour-5').removeClass('future');
-    } else if (currentTime < StartTime) {
+    } else if (currentTime) {
         $('#hour-5').addClass("future");
         $('#hour-5').removeClass("present");
         $('#hour-5').removeClass("past");
@@ -215,13 +215,9 @@ function elevenTime() {
         $('#hour-5').removeClass("past");
         $('#hour-5').addClass("present");
     }
-    console.log("Current Time:", currentTime.format('h:mm A'));
-    console.log("Start Time:", StartTime);
-    console.log("End Time:", EndTime);
+
   }
 
-
- 
 
  
  
